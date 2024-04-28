@@ -132,7 +132,7 @@ export class PrescriptionEntity {
   // doctor: UserEntity;
   @ManyToOne(() => pharmacistEntity, (pharmacist) => pharmacist.id)
   @JoinColumn({ name: 'pharmacist_id' })
-  pharmacists: pharmacistEntity;
+  pharmacist: pharmacistEntity;
 
   @ManyToOne(() => DoctorEntity, (doctor) => doctor.id)
   @JoinColumn({ name: 'doctor_id' })
