@@ -1,11 +1,7 @@
 // prescription.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  DoctorEntity,
-  pharmacistEntity,
-  UserEntity,
-} from './pharmacist.entity';
-
+import { DoctorEntity, pharmacistEntity } from './pharmacist.entity';
+import { UserEntity } from 'src/user/user.entity';
 export class PrescriptionDto {
   @ApiProperty()
   id: number;

@@ -1,30 +1,12 @@
+import { UserEntity } from 'src/user/user.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  OneToMany,
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-
-@Entity('user')
-export class UserEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  email: string;
-
-  @Column()
-  password: string;
-
-  @Column()
-  role: string;
-
-  @OneToMany(() => OtpEntity, (otp) => otp.user)
-  otp: OtpEntity[];
-}
 
 @Entity('pharmacist')
 export class pharmacistEntity {
@@ -63,10 +45,18 @@ export class OtpEntity {
   otp: string;
 
   @Column({ nullable: true })
-  expiration_date: string;
+  expiration_date: Date;
 
-  @ManyToOne(() => UserEntity, (user) => user.otp)
+  @ManyToOne(() => UserEntity, (user) => user.otps)
   user: UserEntity;
+
+  // Set expiration date for OTP (default is 5 minutes)
+  setExpirationDate(expirationInMinutes: number = 5): void {
+    const currentTime = new Date();
+    this.expiration_date = new Date(
+      currentTime.getTime() + expirationInMinutes * 60000,
+    );
+  }
 }
 
 @Entity('doctor')

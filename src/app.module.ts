@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from '@nestjs/jwt';
+import { OtpModule } from './otp/otp.module'; // Import the OTP module
 
 @Module({
   imports: [
@@ -15,6 +17,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    JwtModule.register({
+      secret: 'dummyjwttoken',
+      signOptions: { expiresIn: '9999999h' },
+    }),
+    OtpModule,
   ],
   controllers: [AppController],
   providers: [AppService],
