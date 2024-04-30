@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
-import { OtpModule } from './otp/otp.module'; // Import the OTP module
+import { OtpModule } from './otp/otp.module';
 
 @Module({
   imports: [
